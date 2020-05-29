@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#app{
+				--shadow:-5px -5px 20px 5px #ffffff,5px 5px 20px 5px #cccccc;
+				--bg:linear-gradient(90deg,#e54d42,#39b54a,#0081ff,#9c26b0);
+				position: absolute;
+				width: 100vw;
+				height: 100vh;
+				top: 0;
+				left: 0;
+				background-image: url(../img/background.jpg);
+				background-position: center;
+				background-size: cover;
+			}
+			.up{
+				width: 5vw;
+				height: 5vw;
+				line-height: 5vw;
+				text-align: center;
+			}
+			@keyframes colorChange{
+				0%{
+					color: #0081FF;
+				}
+				50%{
+					color: #FFFFFF;
+				}
+				100%{
+					color: #0081FF;
+				}
+			}
+			@keyframes colorChange2{
+				0%{
+					color: #FFFFFF;
+				}
+				50%{
+					color: #0081FF;
+				}
+				100%{
+					color: #FFFFFF;
+				}
+			}
+			.top,.bottom{
+				display: flex;
+				flex-direction: column;
+				position: fixed;
+				left: 50%;
+				top: 0;
+				transform: translate(-50%,0);
+				z-index: 1;
+			}
+			.bottom{
+				top: initial;
+				bottom: 0;
+				transform: rotate(180deg);
+			}
+			.top>.up:nth-child(1){
+				animation: colorChange 1s infinite;
+			}
+			.top>.up:nth-child(2){
+				animation: colorChange2 1s infinite;
+			}
+			.bottom>.up:nth-child(1){
+				animation: colorChange 1s infinite;
+			}
+			.bottom>.up:nth-child(2){
+				animation: colorChange2 1s infinite;
+			}
+			.page{
+				width: 100vw;
+				height: 100vh;
+				position: fixed;
+				top: 10;
+				color: #FFFFFF;
+				transition: 1s;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		</style>
+	</head>
+	<body>
+			<div id="app">
+				<div class="top" v-show='step>0' @touchend='step--'>
+					<div class="up">^</div>
+					<div class="up">^</div>
+				</div>
+				<div class="bottom" v-show='step<total-1' @touchend='step++'>
+					<div class="up">^</div>
+					<div class="up">^</div>
+				</div>
+				<div class="page" :style='"top:"+(0-step)*100+"vh"'>
+					<h1>第一页</h1>
+				</div>
+				<div class="page" :style='"top:"+(1-step)*100+"vh"'>
+					<h1>第二页</h1>
+				</div>
+				<div class="page" :style='"top:"+(2-step)*100+"vh"'>
+					<h1>第三页</h1>
+				</div>
+				
+			</div>
+			<script src="./js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+			<script type="text/javascript">
+				
+				var app = new Vue({
+					el:'#app',
+					data:{
+						step:0,
+						total:3
+					},
+					destroyed() {
+						
+					},
+					created() {
+						
+					}
+				})
+			</script>
+	</body>
+</html>

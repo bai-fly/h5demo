@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#app{
+				--activeColor:#00ccff;
+				--defaultBg:linear-gradient(90deg,#e54d42,#39b54a,#0081ff,#9c26b0);
+			}
+			.boder{
+				height: calc(100vh - 1rem);
+			}
+			.footer{
+				height: 1rem;
+				font-size: .3rem;
+				display: flex;
+				position: relative;
+			}
+			.footer::before{
+				height: .1rem !important;
+				background-color: var(--activeColor);
+				bottom: 0rem;
+				width: calc(7.5rem / var(--tabsCount)) !important;
+				left: calc(calc(7.5rem / var(--tabsCount)) * var(--active)) !important;
+				transition: .2s;
+			}
+			.footer::after{
+				z-index: -1;
+				background: var(--defaultBg);
+				filter: opacity(.2);
+				top: 0;
+			}
+			.footer::after,.footer::before{
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				left: 0;
+				content: '';
+			}
+			.footer>.item{
+				flex: 1;
+				text-align: center;
+				line-height: 1rem;
+			}
+			.footer>.item.active{
+				color: var(--activeColor);
+			}
+		</style>
+	</head>
+	<body>
+			<div id="app">
+				<div class="boder">
+					{{active}}
+				</div>
+				<div class="footer" :style="'--tabsCount:'+tabs.length+';--active:'+active">
+					<div class="item" :class='active==index?"active":""' v-for='(item,index) in tabs' @touchend='active=index'>
+						{{item.name}}
+					</div>
+				</div>
+			</div>
+			<script src="./js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+			<script type="text/javascript">
+				document.documentElement.style.fontSize = (innerWidth/7.5)+'px'
+				var app = new Vue({
+					el:'#app',
+					data:{
+						active:0,
+						tabs:[
+							{
+								name:'菜单1'
+							},
+							{
+								name:'菜单2'
+							},
+							{
+								name:'菜单3'
+							}
+						]
+					}
+				})
+			</script>
+	</body>
+</html>
