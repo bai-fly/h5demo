@@ -91,11 +91,11 @@
 	</head>
 	<body>
 			<div id="app">
-				<div class="top" v-show='step>0' @touchend='step--'>
+				<div class="top" v-show='step>0' @click='step--'>
 					<div class="up">^</div>
 					<div class="up">^</div>
 				</div>
-				<div class="bottom" v-show='step<total-1' @touchend='step++'>
+				<div class="bottom" v-show='step<total-1' @click='step++'>
 					<div class="up">^</div>
 					<div class="up">^</div>
 				</div>

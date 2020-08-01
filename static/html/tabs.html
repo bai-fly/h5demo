@@ -59,7 +59,7 @@
 					{{active}}
 				</div>
 				<div class="footer" :style="'--tabsCount:'+tabs.length+';--active:'+active">
-					<div class="item" :class='active==index?"active":""' v-for='(item,index) in tabs' @touchend='active=index'>
+					<div class="item" :class='active==index?"active":""' v-for='(item,index) in tabs' @click='active=index'>
 						{{item.name}}
 					</div>
 				</div>
