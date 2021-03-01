@@ -18,6 +18,6 @@
   "homepage": "https://github.com/bai-fly/h5demo#readme",
   "dependencies": {
     "echarts": "^4.7.0",
-    "three": "^0.116.1"
+    "three": "^0.125.0"
   }
 }
